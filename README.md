@@ -1,6 +1,4 @@
-# Project Title
-AXI master IP SV testbench
-
+# AXI master IP SV testbench
 Testbench, using SVA, for AXI master IP from Open-Logic library ([https://github.com/open-logic]). 
 
 ## Introduction
