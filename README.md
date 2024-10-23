@@ -33,6 +33,7 @@ Generics for Customization: The code uses generics to configure various paramete
 
 ## Testbench description
 ### Write operation
+#### Single write
 Assertions verify that the AXI write address channel signals are correct for a single write operation:
 
 * m_axi_awaddr == 32'h1000: Checks that the address on the AXI write address channel (m_axi_awaddr) matches the address sent to the master (32'h1000).
@@ -44,8 +45,18 @@ Assertions verify that the AXI write address channel signals are correct for a s
 * m_axi_wlast == 1'b1: Confirms that the m_axi_wlast signal is asserted, indicating the last beat of the write transaction (since it's a single beat).
 If any of these assertions fail, the $error system task will be called, displaying the corresponding error message and stopping the simulation.
 
+#### Burst write
+* m_axi_awaddr == 32'h3000: Verifies that the starting address of the burst transaction is correct.
+* m_axi_awlen == 8'd3: Checks that the burst length is 3, which means 4 beats in total (AXI uses AWLEN + 1 to represent the number of beats).
+* m_axi_awsize == 3'b010: Confirms that each beat in the burst transfers 4 bytes of data.
+* m_axi_awburst == 2'b01: Checks if the burst type is incrementing, meaning the address will be incremented for each subsequent beat in the burst.
+
 ### Read operation
+#### Single read
 Similar to the write assertions but focus on the AXI read address channel signals (m_axi_araddr, m_axi_arlen, etc.) to ensure they are set correctly for a single read operation.
+
+#### Burst read
+Assertions are similar to the burst write assertions, but they target the AXI read address channel (m_axi_araddr, m_axi_arlen, etc.). You would also need to add assertions to check address incrementation and data ordering for the read burst, similar to the write burst.
 
 ## Key Concepts in the Assertions:
 
