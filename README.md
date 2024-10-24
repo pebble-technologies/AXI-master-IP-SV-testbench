@@ -43,6 +43,7 @@ Assertions verify that the AXI write address channel signals are correct for a s
 * m_axi_wdata == 32'hABCDEF01: Checks that the write data on the AXI write data channel matches the data provided to the master (32'hABCDEF01).
 * m_axi_wstrb == 4'b1111: Verifies that all byte lanes are enabled for the write, as we are writing 4 bytes.
 * m_axi_wlast == 1'b1: Confirms that the m_axi_wlast signal is asserted, indicating the last beat of the write transaction (since it's a single beat).
+* write_response_check (concurrent assertion): This assertion verifies that after a write request is accepted, the AXI master receives a write response within 10 clock cycles. This ensures that the write operation completes in a timely manner.
 If any of these assertions fail, the $error system task will be called, displaying the corresponding error message and stopping the simulation.
 
 #### Burst write
@@ -51,16 +52,15 @@ If any of these assertions fail, the $error system task will be called, displayi
 * m_axi_awsize == 3'b010: Confirms that each beat in the burst transfers 4 bytes of data.
 * m_axi_awburst == 2'b01: Checks if the burst type is incrementing, meaning the address will be incremented for each subsequent beat in the burst.
 
-* write_response_check (concurrent assertion): This assertion verifies that after a write request is accepted, the AXI master receives a write response within 10 clock cycles. This ensures that the write operation completes in a timely manner.
+
 
 ### Read operation
 #### Single read
 Similar to the write assertions but focus on the AXI read address channel signals (m_axi_araddr, m_axi_arlen, etc.) to ensure they are set correctly for a single read operation.
+* read_data_check (concurrent assertion): This assertion verifies that after a read request is accepted, the AXI master receives the read data within 5 clock cycles. This checks for timely completion of read operations.
 
 #### Burst read
 Assertions are similar to the burst write assertions, but they target the AXI read address channel (m_axi_araddr, m_axi_arlen, etc.). You would also need to add assertions to check address incrementation and data ordering for the read burst, similar to the write burst.
-
-* read_data_check (concurrent assertion): This assertion verifies that after a read request is accepted, the AXI master receives the read data within 5 clock cycles. This checks for timely completion of read operations.
 
 ## Key Concepts using SVA
 
