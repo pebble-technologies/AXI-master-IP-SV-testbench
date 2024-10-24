@@ -2,7 +2,7 @@
 Testbench, using SVA, for AXI master IP from Open-Logic library ([https://github.com/open-logic]). 
 
 ## Introduction
-SVA assertions bring a special kind of joy to RTL verification. It's like setting up a series of watchdogs in your design, constantly monitoring for any behavior that deviates from your expectations. With SVAs, you can precisely define complex temporal relationships and corner cases, ensuring that your design behaves exactly as intended. The satisfaction of seeing those assertions pass, knowing that your logic is rock solid, is unmatched. Plus, when an assertion fails, it provides laser-focused debugging information, saving you countless hours of sifting through waveforms. SVAs are a verification engineer's secret weapon, bringing a sense of confidence and control to the often chaotic world of RTL design.
+System Verilog Assertions (SVA) bring a special kind of joy to RTL verification. It's like setting up a series of watchdogs in your design, constantly monitoring for any behavior that deviates from your expectations. With SVAs, you can precisely define complex temporal relationships and corner cases, ensuring that your design behaves exactly as intended. The satisfaction of seeing those assertions pass, knowing that your logic is solid, is unmatched. Plus, when an assertion fails, it provides focused debugging information, saving you countless hours of sifting through waveforms.
 
 ## Description
 
@@ -58,7 +58,7 @@ Similar to the write assertions but focus on the AXI read address channel signal
 #### Burst read
 Assertions are similar to the burst write assertions, but they target the AXI read address channel (m_axi_araddr, m_axi_arlen, etc.). You would also need to add assertions to check address incrementation and data ordering for the read burst, similar to the write burst.
 
-## Key Concepts in the Assertions
+## Key Concepts using SVA
 
 * AXI Channels: The assertions specifically target the AXI address and data channels (AW, W, AR, R) to verify the control and data flow.
 * Burst Operations: The m_axi_awlen and m_axi_arlen signals are checked to differentiate between single and burst transfers.
