@@ -190,6 +190,24 @@ module olo_axi_master_full_tb;
     end
   end
 
+  // ------------------------------------------------------------
+  // Concurrent assertions executed in parallel with the main testbench sequence
+  // ------------------------------------------------------------
+  
+  // Write Operation Assertion: Checks that a write response is received within 10 clock cycles
+  // after a write request is accepted.
+  property write_response_check;
+    @(posedge clk) (m_axi_awvalid && m_axi_awready) |-> ##[1:10] (!m_axi_bvalid && m_axi_bready);
+  endproperty
+  assert property (write_response_check) else $error("Write response timeout");
+
+  // Read Operation Assertion: Checks that read data is available within 5 clock cycles
+  // after a read request is accepted.
+  property read_data_check;
+    @(posedge clk) (m_axi_arvalid && m_axi_arready) |-> ##[1:5] (m_axi_rvalid && m_axi_rready); 
+  endproperty
+  assert property (read_data_check) else $error("Read data timeout");
+  
   // Test scenarios
   initial begin
     // Initialization
@@ -300,8 +318,6 @@ module olo_axi_master_full_tb;
     #10;
     // Assertions for unaligned write (check for correct address and byte enables)
     assert (m_axi_awaddr == 32'h5000) else $error("AWADDR mismatch (unaligned)"); 
-    // ... Add more assertions to check WSTRB and data alignment ...
-
 
     #100 $finish;
   end
