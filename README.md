@@ -58,7 +58,7 @@ Similar to the write assertions but focus on the AXI read address channel signal
 #### Burst read
 Assertions are similar to the burst write assertions, but they target the AXI read address channel (m_axi_araddr, m_axi_arlen, etc.). You would also need to add assertions to check address incrementation and data ordering for the read burst, similar to the write burst.
 
-## Key Concepts in the Assertions:
+## Key Concepts in the Assertions
 
 * AXI Channels: The assertions specifically target the AXI address and data channels (AW, W, AR, R) to verify the control and data flow.
 * Burst Operations: The m_axi_awlen and m_axi_arlen signals are checked to differentiate between single and burst transfers.
