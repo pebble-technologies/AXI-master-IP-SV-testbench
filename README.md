@@ -2,7 +2,7 @@
 Testbench, using SVA, for AXI master IP from Open-Logic library ([https://github.com/open-logic]). 
 
 ## Introduction
-System Verilog Assertions (SVA) bring a special kind of joy to RTL verification. It's like setting up a series of watchdogs in your design, constantly monitoring for any behavior that deviates from your expectations. With SVAs, you can precisely define complex temporal relationships and corner cases, ensuring that your design behaves exactly as intended. The satisfaction of seeing those assertions pass, knowing that your logic is solid, is unmatched. Plus, when an assertion fails, it provides focused debugging information, saving you countless hours of sifting through waveforms.
+System Verilog Assertions (SVA) bring a special kind of joy to RTL verification. It's like setting up a series of watchdogs in your design, constantly monitoring for any behavior that deviates from your expectations. With SVAs, especially with concurrent assertions where long signal sequences can be modeled, you can precisely define complex temporal relationships and corner cases, ensuring that your design behaves exactly as intended. The satisfaction of seeing those assertions pass, knowing that your logic is solid, is unmatched. Plus, when an assertion fails, it provides focused debugging information, saving you countless hours of sifting through waveforms.
 
 ## Description
 
